@@ -28,24 +28,24 @@ export function UploadZone({ onDrop }: UploadZoneProps) {
     <div 
       {...getRootProps()} 
       className={cn(
-        "border-2 border-dashed rounded-[var(--radius-xl)] p-12 text-center cursor-pointer transition-colors duration-200 ease-in-out bg-[var(--color-surface)]",
-        isDragActive && !isDragReject ? "border-[var(--color-accent)] bg-[var(--color-accent)]/5" : "border-[var(--color-border)] hover:border-[var(--color-muted)] hover:bg-[var(--color-surface-hover)]",
-        isDragReject && "border-[var(--color-error)] bg-[var(--color-error)]/5"
+        "border border-dashed p-16 text-center cursor-pointer transition-colors duration-200 ease-in-out bg-[var(--color-surface)]",
+        isDragActive && !isDragReject ? "border-[var(--color-primary)] bg-[var(--color-surface-hover)]" : "border-[var(--color-border)] hover:border-[var(--color-primary)] hover:bg-[var(--color-surface-hover)]",
+        isDragReject && "border-[var(--color-danger)] bg-transparent"
       )}
     >
       <input {...getInputProps()} />
-      <div className="flex justify-center mb-4">
+      <div className="flex justify-center mb-6">
         <div className={cn(
-          "p-4 rounded-full",
-          isDragActive && !isDragReject ? "bg-[var(--color-accent)] text-white" : "bg-[var(--color-surface-hover)] text-[var(--color-muted)]"
+          "text-[var(--color-primary)]",
+          isDragActive && !isDragReject ? "text-[var(--color-primary)]" : "text-[var(--color-muted)]"
         )}>
-          {isDragActive ? <Upload className="w-8 h-8" /> : <ImageIcon className="w-8 h-8" />}
+          {isDragActive ? <Upload className="w-6 h-6" strokeWidth={1.5} /> : <ImageIcon className="w-6 h-6" strokeWidth={1.5} />}
         </div>
       </div>
-      <h3 className="text-xl font-semibold text-[var(--color-primary)] mb-2">
+      <h3 className="text-sm font-medium tracking-tight text-[var(--color-primary)] mb-3 uppercase">
         {isDragActive ? "Drop the images here..." : "Drag & drop images here"}
       </h3>
-      <p className="text-[var(--color-muted)] mb-4">or click to browse from your computer</p>
+      <p className="text-[13px] text-[var(--color-secondary)] font-light mb-6">or click to browse from your computer</p>
       <div className="text-xs text-[var(--color-muted)]/70 flex justify-center gap-4">
         <span>Supports JPG, PNG, WEBP</span>
         <span>•</span>

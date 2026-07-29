@@ -24,12 +24,12 @@ export function SearchBar({ onSearch, placeholder = 'Search products...' }: Sear
 
   return (
     <div className="relative max-w-md w-full">
-      <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-        <Search className="h-5 w-5 text-[var(--color-muted)]" />
+      <div className="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+        <Search className="h-4 w-4 text-[var(--color-muted)]" strokeWidth={1.5} />
       </div>
       <input
         type="text"
-        className="block w-full pl-10 pr-10 py-2 border border-[var(--color-border)] rounded-[var(--radius-md)] bg-[var(--color-surface)] text-[var(--color-primary)] placeholder-[var(--color-muted)] focus:outline-none focus:ring-2 focus:ring-[var(--color-accent)] sm:text-sm transition-shadow"
+        className="block w-full h-[44px] pl-12 pr-10 border border-[var(--color-border)] rounded-[8px] bg-[var(--color-surface)] text-[13px] text-[var(--color-primary)] placeholder-[var(--color-muted)] focus:outline-none focus:border-[var(--color-primary)] focus:ring-0 transition-colors duration-200"
         placeholder={placeholder}
         value={value}
         onChange={(e) => setValue(e.target.value)}
@@ -37,9 +37,9 @@ export function SearchBar({ onSearch, placeholder = 'Search products...' }: Sear
       {value && (
         <button
           onClick={() => setValue('')}
-          className="absolute inset-y-0 right-0 pr-3 flex items-center text-[var(--color-muted)] hover:text-[var(--color-primary)]"
+          className="absolute inset-y-0 right-0 pr-4 flex items-center text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors duration-200"
         >
-          <X className="h-4 w-4" />
+          <X className="h-4 w-4" strokeWidth={1.5} />
         </button>
       )}
     </div>

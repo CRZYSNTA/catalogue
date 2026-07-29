@@ -35,21 +35,21 @@ export function Header() {
   };
 
   return (
-    <header className="h-20 bg-[var(--color-surface)] border-b border-[var(--color-border)] flex items-center justify-between px-8 sticky top-0 z-10 backdrop-blur-md bg-opacity-80">
-      <div className="flex items-center gap-4">
-        <button className="lg:hidden text-[var(--color-muted)] hover:text-[var(--color-primary)]">
-          <Menu className="w-6 h-6" />
+    <header className="h-24 bg-[var(--color-surface)] border-b border-[var(--color-border)] flex items-center justify-between px-12 sticky top-0 z-10">
+      <div className="flex items-center gap-6">
+        <button className="lg:hidden text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors duration-200 ease-in-out">
+          <Menu className="w-5 h-5" strokeWidth={1.5} />
         </button>
-        <h1 className="text-xl font-semibold text-[var(--color-primary)]">{getPageTitle()}</h1>
+        <h1 className="text-[13px] font-medium tracking-tight text-[var(--color-secondary)] uppercase">{getPageTitle()}</h1>
       </div>
       
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-6">
         <button 
           onClick={toggleTheme}
-          className="p-2 rounded-full text-[var(--color-muted)] hover:bg-[var(--color-surface-hover)] transition-colors"
+          className="p-2 text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-all duration-200 ease-in-out"
           aria-label="Toggle dark mode"
         >
-          {isDark ? <Sun className="w-5 h-5" /> : <Moon className="w-5 h-5" />}
+          {isDark ? <Sun className="w-5 h-5" strokeWidth={1.5} /> : <Moon className="w-5 h-5" strokeWidth={1.5} />}
         </button>
         <div className="w-8 h-8 rounded-full border border-[var(--color-border)] overflow-hidden">
           <img 

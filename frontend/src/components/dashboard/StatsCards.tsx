@@ -79,15 +79,15 @@ export function StatsCards({ stats }: StatsCardsProps) {
         <motion.div
           key={i}
           variants={item}
-          className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-5 shadow-[var(--shadow-sm)]"
+          className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-none p-8 shadow-none"
         >
-          <div className="flex items-center gap-4">
-            <div className={cn("p-3 rounded-[var(--radius-md)]", stat.bgColor, stat.color)}>
-              <stat.icon className="w-6 h-6" />
+          <div className="flex flex-col gap-6">
+            <div className="text-[var(--color-primary)]">
+              <stat.icon className="w-5 h-5" strokeWidth={1.5} />
             </div>
             <div>
-              <p className="text-sm font-medium text-[var(--color-muted)]">{stat.label}</p>
-              <h3 className="text-2xl font-semibold text-[var(--color-primary)] mt-1">{stat.value}</h3>
+              <p className="text-[11px] font-medium text-[var(--color-muted)] uppercase tracking-wider mb-2">{stat.label}</p>
+              <h3 className="text-3xl font-light text-[var(--color-primary)] tracking-tight">{stat.value}</h3>
             </div>
           </div>
         </motion.div>
