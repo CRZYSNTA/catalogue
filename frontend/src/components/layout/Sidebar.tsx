@@ -23,8 +23,6 @@ export function Sidebar({ className, isOpen = false, onClose }: SidebarProps) {
   const navItems = [
     { href: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
     { href: '/dashboard/upload', label: 'Upload', icon: Upload },
-    { href: '/dashboard/catalogue', label: 'Catalogue', icon: Package },
-    // { href: '/dashboard/export', label: 'Export', icon: Download },
   ];
 
   return (
