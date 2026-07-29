@@ -21,7 +21,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <img 
           src={product.image_url} 
           alt={product.product_name || 'Product Image'} 
-          className="max-w-full max-h-full object-contain mix-blend-multiply"
+          className="max-w-full max-h-full object-contain mix-blend-multiply dark:mix-blend-normal"
           loading="lazy"
         />
         <div className="absolute top-3 right-3">

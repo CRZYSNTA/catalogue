@@ -9,7 +9,7 @@ export function ProductListItem({ product }: { product: Product }) {
         <img 
           src={product.image_url} 
           alt={product.product_name || ''} 
-          className="max-w-full max-h-full object-contain mix-blend-multiply"
+          className="max-w-full max-h-full object-contain mix-blend-multiply dark:mix-blend-normal"
         />
       </div>
       
