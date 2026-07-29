@@ -4,7 +4,7 @@ import { usePathname } from 'next/navigation';
 import { Sun, Moon, Menu } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-export function Header() {
+export function Header({ onMenuClick }: { onMenuClick?: () => void }) {
   const pathname = usePathname();
   const [isDark, setIsDark] = useState(false);
 
@@ -35,9 +35,13 @@ export function Header() {
   };
 
   return (
-    <header className="h-24 bg-[var(--color-surface)] border-b border-[var(--color-border)] flex items-center justify-between px-12 sticky top-0 z-10">
+    <header className="h-24 bg-[var(--color-surface)] border-b border-[var(--color-border)] flex items-center justify-between px-6 md:px-12 sticky top-0 z-10 w-full shrink-0">
       <div className="flex items-center gap-6">
-        <button className="lg:hidden text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors duration-200 ease-in-out">
+        <button 
+          onClick={onMenuClick}
+          className="lg:hidden text-[var(--color-muted)] hover:text-[var(--color-primary)] transition-colors duration-200 ease-in-out"
+          aria-label="Open sidebar"
+        >
           <Menu className="w-5 h-5" strokeWidth={1.5} />
         </button>
         <h1 className="text-[13px] font-medium tracking-tight text-[var(--color-secondary)] uppercase">{getPageTitle()}</h1>
