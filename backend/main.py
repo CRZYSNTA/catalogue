@@ -1,5 +1,16 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import xml.etree.ElementTree as ET
+
+# Monkey-patch register_namespace to avoid openpyxl ValueError on Render
+original_register_namespace = ET.register_namespace
+def safe_register_namespace(prefix, uri):
+    try:
+        original_register_namespace(prefix, uri)
+    except ValueError:
+        pass
+ET.register_namespace = safe_register_namespace
+
 from routers import upload, products, export
 from config import settings
 
