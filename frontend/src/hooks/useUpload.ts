@@ -1,12 +1,34 @@
 'use client';
 
-import { useState, useCallback } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { api } from '@/services/api';
 import type { UploadFileItem } from '@/types/product';
+import { get, set } from 'idb-keyval';
 
 export function useUpload() {
   const [files, setFiles] = useState<UploadFileItem[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
+  const isLoaded = useRef(false);
+
+  useEffect(() => {
+    get<UploadFileItem[]>('uploadQueue').then((val) => {
+      if (val && val.length > 0) {
+        // Regenerate object URLs since they expire on page reload
+        const restored = val.map((item) => ({
+          ...item,
+          preview: URL.createObjectURL(item.file)
+        }));
+        setFiles(restored);
+      }
+      isLoaded.current = true;
+    }).catch(console.error);
+  }, []);
+
+  useEffect(() => {
+    if (isLoaded.current) {
+      set('uploadQueue', files).catch(console.error);
+    }
+  }, [files]);
 
   const addFiles = useCallback((newFiles: File[]) => {
     const items: UploadFileItem[] = newFiles.map((file) => ({
