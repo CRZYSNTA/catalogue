@@ -5,19 +5,19 @@ from models.product import ProductCreate, ProductUpdate
 from fastapi import HTTPException
 import uuid
 
-# Monkey-patch Supabase python client to bypass strict JWT validation for non-JWT keys
-import supabase._sync.client
+# Safely monkey-patch re.match only during Supabase client initialization
 import re
-# Override the validation in __init__ if needed, or just patch the regex
-original_init = supabase._sync.client.SyncClient.__init__
-def new_init(self, supabase_url, supabase_key, options):
-    # Temporarily allow any key by skipping the regex check
-    # We'll just call original init and ignore the exception, or patch the regex module used in client
-    pass
+original_match = re.match
+def safe_match(pattern, string, flags=0):
+    if string in (settings.SUPABASE_URL, settings.SUPABASE_SERVICE_ROLE_KEY):
+        return True
+    return original_match(pattern, string, flags)
 
-supabase._sync.client.re.match = lambda pattern, string, flags=0: True
-
-supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_SERVICE_ROLE_KEY)
+re.match = safe_match
+try:
+    supabase: Client = create_client(settings.SUPABASE_URL, settings.SUPABASE_SERVICE_ROLE_KEY)
+finally:
+    re.match = original_match
 
 class SupabaseService:
     @staticmethod
